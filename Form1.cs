@@ -177,47 +177,27 @@ namespace Calculator
 
             for (int i = 0; i < symbols.Count; i++)
             {
-                if (symbols[i] == "*")
+                if (symbols[i] == "*" || symbols[i] == "/")
                 {
-                    value = result;
-                    value = Calculate(nums[i], nums[i + 1], symbols[i]);
-                    result += value;
+                    double result = Calculate(nums[i], nums[i + 1], symbols[i]);
+                    nums[i] = result;
+                    nums.RemoveAt(i + 1);
+                    symbols.RemoveAt(i);
+                    i--;
                 }
             }
+
+            value = nums[0];
 
             for (int i = 0; i < symbols.Count; i++)
             {
-                if (symbols[i] == "/")
-                {
-                    value = result;
-                    value = Calculate(nums[i], nums[i + 1], symbols[i]);
-                    result += value;
-                }
+                value = Calculate(value, nums[i + 1], symbols[i]);
             }
 
-            for (int i = 0; i < symbols.Count; i++)
-            {
-                if (symbols[i] == "+")
-                {
-                    value = result;
-                    value = Calculate(nums[i], nums[i + 1], symbols[i]);
-                    result += value;
-                }
-            }
-
-            for (int i = 0; i < symbols.Count; i++)
-            {
-                if (symbols[i] == "-")
-                {
-                    value = result;
-                    value = Calculate(nums[i], nums[i + 1], symbols[i]);
-                    result += value;
-                }
-            }
-
-            boxResult.Text = result.ToString();
+            boxResult.Text = value.ToString();
             nums.Clear();
             symbols.Clear();
+
         }
     }
 }
