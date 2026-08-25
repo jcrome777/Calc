@@ -10,7 +10,6 @@ namespace Calculator
         }
 
         private double value = 0;
-        private double result = 0;
         private List<double> nums = new List<double>();
         private List<string> symbols = new List<string>();
 
@@ -120,7 +119,6 @@ namespace Calculator
                 return;
             }
 
-
             nums.Add(inputNum);
             symbols.Add("+");
 
@@ -197,7 +195,6 @@ namespace Calculator
             boxResult.Text = value.ToString();
             nums.Clear();
             symbols.Clear();
-
         }
     }
 }
